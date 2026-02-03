@@ -1,23 +1,14 @@
 const express = require('express');
 const app = express();
+
+// 1. Render nos asigna un puerto dinámico, debemos usarlo obligatoriamente
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
-
-// Ruta principal para probar en el navegador
 app.get('/', (req, res) => {
-  res.send('¡API de GENPDF funcionando!');
+  res.send('API Lista y en línea');
 });
 
-// Ruta para recibir datos de Apps Script
-app.post('/test', (req, res) => {
-  console.log('Cuerpo recibido:', req.body);
-  res.json({
-    status: 'success',
-    message: 'Datos recibidos correctamente en la API'
-  });
-});
-
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en puerto ${PORT}`);
+// 2. Debes escuchar en '0.0.0.0' para que Render pueda detectar el puerto
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
